@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
   "dependencies": {
     "express": "^4.17.1",
+    "twilio": "^3.37.1",
     "unirest": "^0.6.0"
   },
   "devDependencies": {},
