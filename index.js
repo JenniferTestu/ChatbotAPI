@@ -6,6 +6,10 @@ var port = process.env.PORT || 8080;
 const server = express();
 
 // Test
+server.get('/',function (req,res){
+    res.send('Démarrage réussi !');
+});
+
 server.get('/getName',function (req,res){
     res.send('Bim bada boum !');
 });
