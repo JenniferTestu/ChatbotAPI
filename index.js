@@ -3,7 +3,7 @@ const unirest = require("unirest");
 const bodyParser = require('body-parser');
 const request = require('request');
 
-const apiCle = '44aacdb5c3e417260c94faca83d8cac0';
+const apiCle = '44aacdb5c3e417260c94faca83d8cac0'; 
 
 var port = process.env.PORT || 8080;
 
@@ -40,11 +40,11 @@ server.post('/meteo',function (req,res){
 			let temp = ~~(json.main.temp);
 			let msg = 'Le temps à '+json.name+' est '+json.weather[0].description+' et la température est de '+temp+'°C'
 			res.send(createTextResponse(msg));
-			/*return res.json({
+			return res.json({
 				speech: msg,
 				displayText: msg,
 				source: 'meteo'
-			})*/
+			})
 		}else{
 			let erreurMsg = 'Je ne trouve pas cette ville';
 			return res.status(400).json({
@@ -59,7 +59,7 @@ server.post('/meteo',function (req,res){
 
 function createTextResponse(msg){
   let response = {
-    "fulfillmentText": "This is a text response",
+    "fulfillmentText": msg,
     "fulfillmentMessages": [
       {
         "text": {
@@ -77,17 +77,17 @@ function createTextResponse(msg){
           "items": [
             {
               "simpleResponse": {
-                "textToSpeech": "this is a simple response"
+                "textToSpeech": msg
               }
             }
           ]
         }
       },
       "facebook": {
-        "text": "Hello, Facebook!"
+        "text": msg
       },
       "slack": {
-        "text": "This is a text response for Slack."
+        "text": msg
       }
     }
   }
