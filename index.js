@@ -40,11 +40,11 @@ server.post('/meteo',function (req,res){
 			let temp = ~~(json.main.temp);
 			let msg = 'Le temps à '+json.name+' est '+json.weather[0].description+' et la température est de '+temp+'°C'
 			res.send(createTextResponse(msg));
-			return res.json({
+			/*return res.json({
 				speech: msg,
 				displayText: msg,
 				source: 'meteo'
-			})
+			})*/
 		}else{
 			let erreurMsg = 'Je ne trouve pas cette ville';
 			return res.status(400).json({
@@ -57,14 +57,14 @@ server.post('/meteo',function (req,res){
 	})
 });
 
-function createTextResponse(textResponse){
+function createTextResponse(msg){
   let response = {
     "fulfillmentText": "This is a text response",
     "fulfillmentMessages": [
       {
         "text": {
           "text": [
-            textResponse
+            msg
           ]
         }
       }
