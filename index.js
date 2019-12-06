@@ -32,7 +32,7 @@ server.post('/meteo',function (req,res){
 		console.log(req.body.result);
 
 
-    	let ville = req.query.city;
+    	let ville = req.body.city;
 		let url = 'http://api.openweathermap.org/data/2.5/weather?q='+ville+'&units=metric&appid='+apiCle+'&lang=fr';
 			request.get(url,(err,response,body)=>{
 		if(!err && response.statusCode == 200){
@@ -45,7 +45,7 @@ server.post('/meteo',function (req,res){
 				speech: msg,
 				displayText: msg,
 				source: 'meteo'
-			})
+			});
 		}else{
 			let erreurMsg = 'Je ne trouve pas cette ville';
 			return res.status(400).json({
