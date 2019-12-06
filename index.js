@@ -40,12 +40,13 @@ server.post('/meteo',function (req,res){
 			console.log(json);
 			let temp = ~~(json.main.temp);
 			let msg = 'Le temps à '+json.name+' est '+json.weather[0].description+' et la température est de '+temp+'°C'
-			res.send(createTextResponse(msg));
-			return res.json({
+			//res.send(createTextResponse(msg));
+			/*return res.json({
 				speech: msg,
 				displayText: msg,
 				source: 'meteo'
-			});
+			});*/
+			return JSON.stringify({"fulfillmentText": msg});
 		}else{
 			let erreurMsg = 'Je ne trouve pas cette ville';
 			return res.status(400).json({
