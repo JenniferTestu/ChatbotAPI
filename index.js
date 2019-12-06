@@ -39,6 +39,7 @@ server.post('/meteo',function (req,res){
 			console.log(json);
 			let temp = ~~(json.main.temp);
 			let msg = 'Le temps à '+json.name+' est '+json.weather[0].description+' et la température est de '+temp+'°C'
+			res.send(createTextResponse(msg));
 			return res.json({
 				speech: msg,
 				displayText: msg,
@@ -55,3 +56,40 @@ server.post('/meteo',function (req,res){
 		}
 	})
 });
+
+function createTextResponse(textResponse){
+  let response = {
+    "fulfillmentText": "This is a text response",
+    "fulfillmentMessages": [
+      {
+        "text": {
+          "text": [
+            textResponse
+          ]
+        }
+      }
+    ],
+    "source": "example.com",
+    "payload": {
+      "google": {
+        "expectUserResponse": true,
+        "richResponse": {
+          "items": [
+            {
+              "simpleResponse": {
+                "textToSpeech": "this is a simple response"
+              }
+            }
+          ]
+        }
+      },
+      "facebook": {
+        "text": "Hello, Facebook!"
+      },
+      "slack": {
+        "text": "This is a text response for Slack."
+      }
+    }
+  }
+  return response;
+}
