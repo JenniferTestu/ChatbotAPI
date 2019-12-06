@@ -46,7 +46,21 @@ server.post('/meteo',function (req,res){
 				displayText: msg,
 				source: 'meteo'
 			});*/
-			return JSON.stringify({"fulfillmentText": msg});
+			let responseObj={
+			     "fulfillmentText":msg
+			    ,"fulfillmentMessages":[
+			        {
+			            "text": {
+			                "text": [
+			                    "Hello I m Responding to intent"
+			                ]
+			            }
+			        }
+			    ]
+			    ,"source":""
+			}
+			return res.json(responseObj);});
+
 		}else{
 			let erreurMsg = 'Je ne trouve pas cette ville';
 			return res.status(400).json({
