@@ -56,11 +56,11 @@ server.post('/meteo',function (req,res){
 			let temp = ~~(json.main.temp);
 			let msg = 'Le temps à '+json.name+' est '+json.weather[0].description+' et la température est de '+temp+'°C';
 			res.send(createTextResponse(msg));
-			/*return res.json({
-				speech: msg,
-				displayText: msg,
+			return res.json({
+				fulfillmentMessages: msg,
+				fulfillmentText: msg,
 				source: 'meteo'
-			});*/
+			});
 
 
 		}else{
