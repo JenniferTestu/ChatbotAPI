@@ -34,8 +34,8 @@ server.post('/meteo',function (req,res){
 
     	let ville = req.body.city;
 		let url = 'http://api.openweathermap.org/data/2.5/weather?q='+ville+'&units=metric&appid='+apiCle+'&lang=fr';
-			request.get(url,(err,response,body)=>{
-		if(!err && response.statusCode == 200){
+			request.get(url,(err,res,body)=>{
+		if(!err && res.statusCode == 200){
 			let json = JSON.parse(body);
 			console.log(json);
 			let temp = ~~(json.main.temp);
@@ -46,6 +46,7 @@ server.post('/meteo',function (req,res){
 				displayText: msg,
 				source: 'meteo'
 			});*/
+			res.setHeader('Content-Type','application/json');
 			let responseObj={
 			     "fulfillmentText":msg
 			    ,"fulfillmentMessages":[
