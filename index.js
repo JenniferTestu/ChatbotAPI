@@ -26,20 +26,40 @@ serveur.post("/meteo", function(req, res) {
 			let temp = ~~(json.main.temp);
 			let msg = 'Le temps à '+json.name+' est '+json.weather[0].description+' et la température est de '+temp+'°C'
 			return res.json({
-			    //payload: speechResponse,
+			    payload: google: {
+      expectUserResponse: true,
+      richResponse: {
+        items: [
+          {
+            simpleResponse: {
+              textToSpeech: msg
+            }
+          }
+        ]
+      },
 			    //data: speechResponse,
 			    fulfillmentText: msg,
 			    displayText: msg,
-			    source: "meteo"
+			    source: "testwhatsapp"
 			});
 		}else{
 			let erreurMsg = 'Je ne trouve pas cette ville';
 			return res.json({
-			    //payload: speechResponse,
+			    payload: google: {
+      expectUserResponse: true,
+      richResponse: {
+        items: [
+          {
+            simpleResponse: {
+              textToSpeech: erreurMsg
+            }
+          }
+        ]
+      },
 			    //data: speechResponse,
 			    fulfillmentText: erreurMsg,
 			    displayText: erreurMsg,
-			    source: "meteo"
+			    source: "testwhatsapp"
 			});
 		}
   
