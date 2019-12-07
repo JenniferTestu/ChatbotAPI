@@ -2,6 +2,7 @@ const express = require("express");
 const unirest = require("unirest");
 const bodyParser = require('body-parser');
 const request = require('request');
+const axios = require('axios');
 
 const apiCle = '44aacdb5c3e417260c94faca83d8cac0'; 
 
@@ -18,7 +19,21 @@ server.get('/',function (req,res){
 });
 
 server.get('/getName',function (req,res){
-    res.send('Bim bada boum !');
+	let responseObj={
+			     "fulfillmentText":'Bim bam boum, ca pshit et ca fait vroum'
+			    ,"fulfillmentMessages":[
+			        {
+			            "text": {
+			                "text": [
+			                    "Hello I m Responding to intent"
+			                ]
+			            }
+			        }
+			    ]
+			    ,"source":""
+			}
+    res.send(responseObj);
+    return res.json(responseObj);
 });
 
 // Le serveur est à l'écoute
@@ -46,21 +61,7 @@ server.post('/meteo',function (req,res){
 				displayText: msg,
 				source: 'meteo'
 			});*/
-			res.setHeader('Content-Type','application/json');
-			let responseObj={
-			     "fulfillmentText":msg
-			    ,"fulfillmentMessages":[
-			        {
-			            "text": {
-			                "text": [
-			                    "Hello I m Responding to intent"
-			                ]
-			            }
-			        }
-			    ]
-			    ,"source":""
-			}
-			return res.json(responseObj);});
+
 
 		}else{
 			let erreurMsg = 'Je ne trouve pas cette ville';
