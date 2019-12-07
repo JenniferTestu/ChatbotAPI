@@ -36,10 +36,6 @@ server.get('/getName',function (req,res){
     return res.json(responseObj);
 });
 
-// Le serveur est à l'écoute
-server.listen(port, function () {
-    console.log("Le serveur est lancé ...");
-});
 
 // Météo
 server.post('/meteo',function (req,res){
@@ -111,3 +107,8 @@ function createTextResponse(msg){
   }
   return response;
 }
+
+// Le serveur est à l'écoute
+server.listen(port, function () {
+  console.log("Le serveur est lancé ...");
+});
