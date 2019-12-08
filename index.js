@@ -13,6 +13,11 @@ var port = process.env.PORT || 8080;
 server.use(bodyParser.urlencoded({extended: true}));
 server.use(bodyParser.json());
 
+// Test
+server.get('/',function (req,res){
+    res.send('Démarrage réussi !');
+});
+
 // Meteo
 server.post('/webhook', function (req, res) {
 
