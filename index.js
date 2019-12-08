@@ -11,7 +11,7 @@ const apiCle = '44aacdb5c3e417260c94faca83d8cac0';
 var port = process.env.PORT || 8080;
 var result;
 
-server.use(bodyParser.urlencoded({extended: false}));
+server.use(bodyParser.urlencoded({extended: true}));
 server.use(bodyParser.json());
 
 // Meteo
