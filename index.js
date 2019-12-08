@@ -24,14 +24,13 @@ server.post('/webhook', function (req, res) {
 	    if(!err && response.statusCode == 200){
 	      let json = JSON.parse(body);
 	      console.log(json);
-	      let temp = ~~(json.main.temp);
-	      let msg = 'Le temps à '+json.name+' est '+json.weather[0].description+' et la température est de '+temp+'°C';
-	      res.setHeader('Content-Type', 'application/json');
-	      res.send({
+	      let msg = 'Le temps à '+json.name+' est '+json.weather[0].description+' et la température est de '+json.main.temp+'°C';
+	      //res.setHeader('Content-Type', 'application/json');
+	      /*res.send({
 	        fulfillmentMessages: msg,
 	        fulfillmentText: msg,
 	        source: 'meteo'
-	      });
+	      });*/
 	      return res.json({
 	        "fulfillmentMessages": msg,
 	        "fulfillmentText": msg,
