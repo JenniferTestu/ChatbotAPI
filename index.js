@@ -41,8 +41,17 @@ server.post('/webhook', function (req, res) {
 			        source: 'meteo'
 			      });*/
 			      return res.json({
-			        "fulfillmentMessages": msg,
-			        "fulfillmentText": msg,
+			      	"fulfillmentText": msg,
+			        "fulfillmentMessages": [
+			        	"simpleResponses": {
+			        		"simpleResponses":[
+			        		{
+			        			"textToSpeech":msg,
+			        			"displayText":msg
+			        		}
+			        		]
+			        	}
+			        ],
 			        "source": ""
 			      });
 
