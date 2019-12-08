@@ -16,10 +16,7 @@ server.use(bodyParser.json());
 // Meteo
 server.post('/webhook', function (req, res) {
 
-	if(!req.query){
-		return res.sendStatus(400);
-	}
-	res.setHeader('Content-Type','application/json');
+
 	var city = req.query.city;
 
 	var url = 'http://api.openweathermap.org/data/2.5/weather?q='+city+'&units=metric&appid='+apiCle+'&lang=fr';
