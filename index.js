@@ -21,9 +21,9 @@ server.get('/',function (req,res){
 // Meteo
 server.post('/webhook', function (req, res) {
 
-	var action = req.body.queryResult.parameters.Action;
+	var displayName = req.body.queryResult.intent.displayName;
     
-    switch(action) {
+    switch(displayName) {
 
 		case 'interrogation_openweathermap': {
 			var city = req.body.queryResult.parameters.City;
