@@ -1,71 +1,59 @@
 "use strict";
 
 const express = require("express");
-
 const bodyParser = require("body-parser");
 
-const restService = express();
+const serveur = express();
 
-restService.use(bodyParser.urlencoded({extended: true}));
+const apiCle = '44aacdb5c3e417260c94faca83d8cac0'; 
 
-restService.use(bodyParser.json());
+var port = process.env.PORT || 8080;
 
-restService.post("/meteo", function (req, res) {
+serveur.use(bodyParser.urlencoded({extended: true}));
+serveur.use(bodyParser.json());
 
-   if (req.body.queryResult.parameters.city == "contact number"
+// Test
+server.get('/',function (req,res){
+    res.send('Démarrage réussi !');
+});
 
-    && req.body.queryResult.parameters.city) {
+// Meteo
+serveur.post("/meteo", function (req, res) {
 
-    var speech = "999999999";
+   if (req.body.queryResult.parameters.city) {
+	    let ville = req.query.city;
+	    let url = 'http://api.openweathermap.org/data/2.5/weather?q='+ville+'&units=metric&appid='+apiCle+'&lang=fr';
 
-  }
+	    if(!err && response.statusCode == 200){
+		      let json = JSON.parse(body);
+		      console.log(json);
+		      let temp = ~~(json.main.temp);
+		      let msg = 'Le temps à '+json.name+' est '+json.weather[0].description+' et la température est de '+temp+'°C';
 
-  else if (req.body.queryResult.parameters.city == "account number"
+				  return res.json({
+				    fulfillmentText: msg,
+				    fulfillmentMessages: [{
+				      simpleResponses: {
+				        simpleResponses: [{
+				          "textToSpeech": "textToSpeech",
+				          "displayText": msg
+				        }]
+				      }
+				    }],
+				    source: "webhook-sample"
+				  });
+		}else{
+		      let erreurMsg = 'Je ne trouve pas cette ville';
+		      return res.status(400).json({
+		        status: {
+		          code: 400,
+		          errorType: erreurMsg
+		        }
+		      });
+    	}
+	}
+});
 
-    && req.body.queryResult.parameters.city) {
-
-    var speech = "9999999999999";
-
-  }
-
-  else if (req.body.queryResult.parameters.city == "DOB"
-
-    && req.body.queryResult.parameters.city) {
-
-    var speech = "1 Jan 2019";
-
-  }
-
-  else if (req.body.queryResult.parameters.city == "address"
-
-    && req.body.queryResult.parameters.city) {
-
-    var speech = " floor no 1 , Building no 1 , address";
-
-  }
-
-  return res.json({
-
-    fulfillmentText: "fulfillmentText",
-
-    fulfillmentMessages: [{
-
-      simpleResponses: {
-
-        simpleResponses: [{
-
-          "textToSpeech": "textToSpeech",
-
-          "displayText": speech
-
-        }]
-
-      }
-
-    }],
-
-    source: "webhook-sample"
-
-  });
-
+server.listen(port, function () {
+  console.log("Le serveur est lancé ...");
 });
