@@ -26,11 +26,10 @@ serveur.post("/meteo", function (req, res) {
 	    let url = 'http://api.openweathermap.org/data/2.5/weather?q='+ville+'&units=metric&appid='+apiCle+'&lang=fr';
 
 	    request.get(url,(err,response,body)=>{
-		    if(!err && response.statusCode == 200){
+
 			      let json = JSON.parse(body);
-			      console.log(json);
-			      let temp = ~~(json.main.temp);
-			      let msg = 'Le temps à '+json.name+' est '+json.weather[0].description+' et la température est de '+temp+'°C';
+			      //console.log(json);
+			      let msg = 'Le temps à '+json.name+' est '+json.weather[0].description+' et la température est de '+json.main.temp+'°C';
 
 					  return res.json({
 					    fulfillmentText: msg,
@@ -44,15 +43,7 @@ serveur.post("/meteo", function (req, res) {
 					    }],
 					    source: "webhook-sample"
 					  });
-			}else{
-			      let erreurMsg = 'Je ne trouve pas cette ville';
-			      return res.status(400).json({
-			        status: {
-			          code: 400,
-			          errorType: erreurMsg
-			        }
-			      });
-	    	}
+			
    		});
 	}
 });
