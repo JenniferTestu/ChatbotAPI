@@ -19,7 +19,7 @@ server.get('/',function (req,res){
 });
 
 // Meteo
-server.post('/webhook', function (req, res) {
+server.post('/', function (req, res) {
 
 
 	var city = req.query.city;
