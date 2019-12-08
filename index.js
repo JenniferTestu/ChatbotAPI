@@ -42,7 +42,7 @@ server.post('/webhook', function (req, res) {
 			      });*/
 			      return res.json({
 			      	"fulfillmentText": msg,
-			        "fulfillmentMessages": [
+			        "fulfillmentMessages": [{
 			        	"simpleResponses": {
 			        		"simpleResponses":[
 			        		{
@@ -51,7 +51,7 @@ server.post('/webhook', function (req, res) {
 			        		}
 			        		]
 			        	}
-			        ],
+			        }],
 			        "source": ""
 			      });
 
