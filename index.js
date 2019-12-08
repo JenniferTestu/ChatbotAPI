@@ -25,7 +25,7 @@ server.post('/webhook', function (req, res) {
     
     switch(displayName) {
 
-		case 'interrogation_openweathermap': {
+		case 'meteo': {
 			var city = req.body.queryResult.parameters.City;
 
 			var url = 'http://api.openweathermap.org/data/2.5/weather?q='+city+'&units=metric&appid='+apiCle+'&lang=fr';
