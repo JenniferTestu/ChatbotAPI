@@ -51,6 +51,7 @@ server.post('/meteo',function (req,res){
 			console.log(json);
 			let temp = ~~(json.main.temp);
 			let msg = 'Le temps à '+json.name+' est '+json.weather[0].description+' et la température est de '+temp+'°C';
+			res.setHeader('Content-Type', 'application/json');
 			res.send({
 				fulfillmentMessages: msg,
 				fulfillmentText: msg,
