@@ -19,7 +19,7 @@ server.post('/webhook', function (req, res) {
 
 	if(!req.query)return res.sendStatus(400)
 	res.setHeader('Content-Type','application/json');
-	var city = req.query['geo-city'];
+	var city = req.query.city;
 	var w = getWeather(city);
 	let response = " ";
 	let responseObj={
