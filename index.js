@@ -38,14 +38,7 @@ server.post('/webhook', function (req, res) {
 			      return res.json({
 			      	"fulfillmentText": msg,
 			        "fulfillmentMessages": [{
-			        	"simpleResponses": {
-			        		"simpleResponses":[
-			        		{
-			        			"textToSpeech":msg,
-			        			"displayText":msg
-			        		}
-			        		]
-			        	},
+			        	
 			        	"card": {
 			        		"imageUri": 'https://media.giphy.com/media/RMQ7kUUhfcYj6/giphy.gif'
 			        	}
