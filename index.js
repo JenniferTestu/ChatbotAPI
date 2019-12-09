@@ -18,7 +18,7 @@ server.get('/',function (req,res){
     res.send('Démarrage réussi !');
 });
 
-// Meteo
+// Webhook de l'agent meteo
 server.post('/webhook', function (req, res) {
 
 	var displayName = req.body.queryResult.intent.displayName;
@@ -34,12 +34,7 @@ server.post('/webhook', function (req, res) {
 			      let json = JSON.parse(body);
 			      console.log(json);
 			      let msg = 'Le temps à '+json.name+' est '+json.weather[0].description+' et la température est de '+json.main.temp+'°C';
-			      //res.setHeader('Content-Type', 'application/json');
-			      /*res.send({
-			        fulfillmentMessages: msg,
-			        fulfillmentText: msg,
-			        source: 'meteo'
-			      });*/
+			      
 			      return res.json({
 			      	"fulfillmentText": msg,
 			        "fulfillmentMessages": [{
@@ -50,6 +45,9 @@ server.post('/webhook', function (req, res) {
 			        			"displayText":msg
 			        		}
 			        		]
+			        	},
+			        	"card": {
+			        		"imageUri": 'https://media.giphy.com/media/RMQ7kUUhfcYj6/giphy.gif'
 			        	}
 			        }],
 			        "source": ""
@@ -71,6 +69,31 @@ server.post('/webhook', function (req, res) {
 	}
 	
 });
+
+
+// GIF de test https://media.giphy.com/media/RMQ7kUUhfcYj6/giphy.gif
+
+// Fonction pour avoir un gif aleatoire a partir d'un mot cle
+function GifRandom(mot){
+
+	var fs = require('fs')
+
+	request({
+		url:'https://api.giphy.com/v1/gifs/random',
+		qs:{
+		 tag: mot,
+		 rating: 'PG-13';
+		 api_key: '???????????'
+		}}, function(err,res,data){
+		if(err){
+		 return console.log('Error ' + err)
+		}
+		request(JSON.parse(data).data.image_original_url).pipe(fs.createWriteStream(process.argv[2]+'.gif'))
+	})
+	
+
+	//var urlGif = 'https://api.giphy.com/v1/gifs/random?api_key='+apiGif+'&tag='+mot;
+}
 
 server.listen(port, function () {
   console.log("Le serveur est lancé ...");
