@@ -82,7 +82,7 @@ function GifRandom(mot){
 		url:'https://api.giphy.com/v1/gifs/random',
 		qs:{
 		 tag: mot,
-		 rating: 'PG-13';
+		 rating: 'PG-13',
 		 api_key: '???????????'
 		}}, function(err,res,data){
 		if(err){
