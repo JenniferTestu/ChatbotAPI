@@ -47,7 +47,7 @@ server.post('/webhook', function (req, res) {
 					      "card": {
 					        "title": "Voici la météo actuellement",
 					        "subtitle": msg,
-					        "imageUri": "https://media.giphy.com/media/RMQ7kUUhfcYj6/giphy.gif",
+					        "imageUri": gif,
 					      }
 					    },
 					    {
@@ -55,7 +55,7 @@ server.post('/webhook', function (req, res) {
 					      "card": {
 					        "title": "Voici la météo actuellement",
 					        "subtitle": msg,
-					        "imageUri": "https://media.giphy.com/media/RMQ7kUUhfcYj6/giphy.gif",
+					        "imageUri": gif,
 					      }
 					    },
 					    {
@@ -63,7 +63,7 @@ server.post('/webhook', function (req, res) {
 					      "card": {
 					        "title": "Voici la météo actuellement",
 					        "subtitle": msg,
-					        "imageUri": "https://media.giphy.com/media/RMQ7kUUhfcYj6/giphy.gif",
+					        "imageUri": gif,
 					      }
 					    }
 			        ],
