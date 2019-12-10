@@ -7,6 +7,7 @@ const request = require('request');
 const server = express();
 
 const apiCle = '44aacdb5c3e417260c94faca83d8cac0'; 
+const apiGif = 'rKjsTiokAvSUocS7JZQyTFNAEeiux2Uo'; 
 
 var port = process.env.PORT || 8080;
 
@@ -33,6 +34,9 @@ server.post('/webhook', function (req, res) {
 			    if(!err && response.statusCode == 200){
 			      let json = JSON.parse(body);
 			      console.log(json);
+
+			      let gif = gifRandom(json.weather[0].description);
+
 			      let msg = 'Le temps à '+json.name+' est '+json.weather[0].description+' et la température est de '+json.main.temp+'°C';
 			      
 			      return res.json({
@@ -87,25 +91,38 @@ server.post('/webhook', function (req, res) {
 // GIF de test https://media.giphy.com/media/RMQ7kUUhfcYj6/giphy.gif
 
 // Fonction pour avoir un gif aleatoire a partir d'un mot cle
-function GifRandom(mot){
+function gifRandom(mot){
 
-	var fs = require('fs')
+	/*var fs = require('fs')
 
 	request({
 		url:'https://api.giphy.com/v1/gifs/random',
 		qs:{
 		 tag: mot,
 		 rating: 'PG-13',
-		 api_key: '???????????'
+		 api_key: 'rKjsTiokAvSUocS7JZQyTFNAEeiux2Uo'
 		}}, function(err,res,data){
 		if(err){
 		 return console.log('Error ' + err)
 		}
 		request(JSON.parse(data).data.image_original_url).pipe(fs.createWriteStream(process.argv[2]+'.gif'))
-	})
+	})*/
 	
 
-	//var urlGif = 'https://api.giphy.com/v1/gifs/random?api_key='+apiGif+'&tag='+mot;
+	var urlGif = 'https://api.giphy.com/v1/gifs/random?api_key='+apiGif+'&tag='+mot;
+
+			request.get(urlGif,(err,response,body)=>{
+			    if(!err && response.statusCode == 200){
+			      let json = JSON.parse(body);
+			      console.log(json);
+
+			      let img = gifRandom(json.weather[0].description);
+			      
+			      return response.body.url;
+
+			    }
+			});
+			
 }
 
 server.listen(port, function () {
