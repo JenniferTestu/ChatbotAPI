@@ -116,7 +116,7 @@ function gifRandom(mot){
 			      let j = JSON.parse(data);
 			      console.log(j.data.image_original_url);
 			      
-			      return String(j.data.image_original_url);
+			      return JSON.stringify(j.data.image_original_url);
 
 			    }
 			});
