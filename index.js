@@ -10,6 +10,7 @@ const apiCle = '44aacdb5c3e417260c94faca83d8cac0';
 const apiGif = 'rKjsTiokAvSUocS7JZQyTFNAEeiux2Uo'; 
 
 var port = process.env.PORT || 8080;
+var gif = " ";
 
 server.use(bodyParser.urlencoded({extended: false}));
 server.use(bodyParser.json());
@@ -35,7 +36,7 @@ server.post('/webhook', function (req, res) {
 			      let json = JSON.parse(body);
 			      console.log(json);
 
-			      var gif = gifRandom(json.weather[0].description);
+			      gifRandom(json.weather[0].description);
 
 			      let msg = 'Le temps à '+json.name+' est '+json.weather[0].description+' et la température est de '+json.main.temp+'°C';
 			      
@@ -116,7 +117,7 @@ function gifRandom(mot){
 			      let j = JSON.parse(data);
 			      console.log(j.data.image_original_url);
 			      
-			      return "https://media.giphy.com/media/C8oxPCiXaZex3ho9C2/giphy.gif";
+			      gif = 'https://media.giphy.com/media/C8oxPCiXaZex3ho9C2/giphy.gif';
 
 			    }
 			});
