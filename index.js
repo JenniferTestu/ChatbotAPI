@@ -37,12 +37,32 @@ server.post('/webhook', function (req, res) {
 			      
 			      return res.json({
 			      	"fulfillmentText": msg,
-			        "fulfillmentMessages": [{
-			        	
-			        	"card": {
-			        		"imageUri": 'http://www.unpeudedroit.fr/wp-content/uploads/2012/09/Chuck-Norris-Approved-300x287.jpg'
-			        	}
-			        }],
+			        "fulfillmentMessages": [
+			        	{
+					      "platform": "FACEBOOK",
+					      "card": {
+					        "title": "Voici la météo actuellement",
+					        "subtitle": msg,
+					        "imageUri": "https://media.giphy.com/media/RMQ7kUUhfcYj6/giphy.gif",
+					      }
+					    },
+					    {
+					      "platform": "SKYPE",
+					      "card": {
+					        "title": "Voici la météo actuellement",
+					        "subtitle": msg,
+					        "imageUri": "https://media.giphy.com/media/RMQ7kUUhfcYj6/giphy.gif",
+					      }
+					    },
+					    {
+					      "platform": "GOOGLE",
+					      "card": {
+					        "title": "Voici la météo actuellement",
+					        "subtitle": msg,
+					        "imageUri": "https://media.giphy.com/media/RMQ7kUUhfcYj6/giphy.gif",
+					      }
+					    }
+			        ],
 			        "source": ""
 			      });
 
