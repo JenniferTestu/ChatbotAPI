@@ -47,7 +47,7 @@ server.post('/webhook', function (req, res) {
 					      "card": {
 					        "title": "Voici la météo actuellement",
 					        "subtitle": msg,
-					        "imageUri": JSON.stringify(gif.image_original_url),
+					        "imageUri": gif,
 					      }
 					    },
 					    {
@@ -55,7 +55,7 @@ server.post('/webhook', function (req, res) {
 					      "card": {
 					        "title": "Voici la météo actuellement",
 					        "subtitle": msg,
-					        "imageUri": JSON.stringify(gif.image_original_url),
+					        "imageUri": gif,
 					      }
 					    },
 					    {
@@ -63,7 +63,7 @@ server.post('/webhook', function (req, res) {
 					      "card": {
 					        "title": "Voici la météo actuellement",
 					        "subtitle": msg,
-					        "imageUri": JSON.stringify(gif.image_original_url),
+					        "imageUri": gif,
 					      }
 					    }
 			        ],
@@ -116,7 +116,7 @@ function gifRandom(mot){
 			      let j = JSON.parse(data);
 			      console.log(j.data.image_original_url);
 			      
-			      return j;
+			      return String(j.data.image_original_url);
 
 			    }
 			});
