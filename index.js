@@ -35,7 +35,7 @@ server.post('/webhook', function (req, res) {
 			      let json = JSON.parse(body);
 			      console.log(json);
 
-			      let gif = gifRandom(json.weather[0].description);
+			      var gif = gifRandom(json.weather[0].description);
 
 			      let msg = 'Le temps à '+json.name+' est '+json.weather[0].description+' et la température est de '+json.main.temp+'°C';
 			      
@@ -47,7 +47,7 @@ server.post('/webhook', function (req, res) {
 					      "card": {
 					        "title": "Voici la météo actuellement",
 					        "subtitle": msg,
-					        "imageUri": gif,
+					        "imageUri": JSON.stringify(gif),
 					      }
 					    },
 					    {
@@ -55,7 +55,7 @@ server.post('/webhook', function (req, res) {
 					      "card": {
 					        "title": "Voici la météo actuellement",
 					        "subtitle": msg,
-					        "imageUri": gif,
+					        "imageUri": JSON.stringify(gif),
 					      }
 					    },
 					    {
@@ -63,7 +63,7 @@ server.post('/webhook', function (req, res) {
 					      "card": {
 					        "title": "Voici la météo actuellement",
 					        "subtitle": msg,
-					        "imageUri": gif,
+					        "imageUri": JSON.stringify(gif),
 					      }
 					    }
 			        ],
