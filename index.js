@@ -117,7 +117,7 @@ function gifRandom(mot){
 			      let j = JSON.parse(data);
 			      console.log(j.data.image_original_url);
 			      
-			      gif = 'https://media0.giphy.com/media/C8oxPCiXaZex3ho9C2/giphy.gif';
+			      gif = String(j.data.image_original_url);
 
 			    }
 			});
