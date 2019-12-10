@@ -114,7 +114,7 @@ function gifRandom(mot){
 			request.get(urlGif,(err,response,data)=>{
 			    if(!err && response.statusCode == 200){
 			      let json = JSON.parse(data);
-			      console.log(json);
+			      console.log(json.data.image_original_url);
 			      
 			      return json.data.image_original_url;
 
