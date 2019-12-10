@@ -36,7 +36,7 @@ server.post('/webhook', function (req, res) {
 			      let json = JSON.parse(body);
 			      console.log(json);
 
-			      gifRandom(json.weather[0].description);
+			      gifRandom(json.weather[0].main);
 
 			      let msg = 'Le temps à '+json.name+' est '+json.weather[0].description+' et la température est de '+json.main.temp+'°C';
 			      
