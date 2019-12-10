@@ -110,7 +110,7 @@ function gifRandom(mot){
 	})*/
 	
 
-	var urlGif = 'https://api.giphy.com/v1/gifs/random?api_key='+apiGif+'&tag='+mot;
+	var urlGif = 'https://api.giphy.com/v1/gifs/random?api_key='+apiGif+'&tag='+mot+'&rating=PG';
 
 			request.get(urlGif,(err,response,data)=>{
 			    if(!err && response.statusCode == 200){
