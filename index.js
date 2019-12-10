@@ -111,12 +111,12 @@ function gifRandom(mot){
 
 	var urlGif = 'https://api.giphy.com/v1/gifs/random?api_key='+apiGif+'&tag='+mot;
 
-			request.get(urlGif,(err,response,body)=>{
+			request.get(urlGif,(err,response,data)=>{
 			    if(!err && response.statusCode == 200){
-			      let json = JSON.parse(body);
+			      let json = JSON.parse(data);
 			      console.log(json);
 			      
-			      return json.data.image_original_url;
+			      return json.image_original_url;
 
 			    }
 			});
