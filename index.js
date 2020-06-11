@@ -6,8 +6,12 @@ const request = require('request');
 
 const server = express();
 
-const apiCle = '44aacdb5c3e417260c94faca83d8cac0'; 
-const apiGif = 'rKjsTiokAvSUocS7JZQyTFNAEeiux2Uo'; 
+const apiCle = process.env.API_W; 
+const apiGif = process.env.API_GIF; 
+
+require('dotenv').config();
+
+console.log(process.env);
 
 var port = process.env.PORT || 8080;
 var gif = " ";
