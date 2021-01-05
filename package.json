@@ -8,7 +8,7 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "deasync": "^0.1.16",
     "dotenv": "^8.2.0",
